@@ -5,7 +5,7 @@ import android.databinding.Bindable
 import my.com.toru.databindingex.BR
 
 
-class UserLogin(_email:String = "", _password:String = ""):BaseObservable(){
+data class UserLogin(private var _email:String = "", private var _password:String = ""):BaseObservable(){
     @Bindable var email:String = _email
     set(value) {
         field = value
