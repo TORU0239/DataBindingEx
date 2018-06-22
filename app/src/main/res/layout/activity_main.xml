@@ -43,6 +43,7 @@
                 android:hint="E-mail"
                 android:labelFor="@id/tvEmail"
                 android:inputType="textEmailAddress"
+                android:text="@={userViewModel.loginModel.email}"
                 app:layout_constraintTop_toBottomOf="@id/tvEmail"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
@@ -64,6 +65,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
 
+                android:text="@={userViewModel.loginModel.password}"
                 app:layout_constraintTop_toBottomOf="@id/tvPassword"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
@@ -73,6 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Login"
+                android:onClick="@{userViewModel::sendLoginInfo}"
                 app:layout_constraintTop_toBottomOf="@id/etPassword"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"/>
