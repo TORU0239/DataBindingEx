@@ -5,7 +5,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/main_nav_list"
-            android:icon="@android:drawable/ic_media_previous"
+            android:icon="@drawable/ic_outline_list_24px"
             android:title="Home"/>
     </group>
 
@@ -14,17 +14,17 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/main_nav_faq"
-            android:icon="@android:drawable/ic_media_play"
+            android:icon="@drawable/ic_outline_question_answer_24px"
             android:title="Faq"/>
 
         <item
             android:id="@+id/main_nav_setting"
-            android:icon="@android:drawable/ic_media_ff"
+            android:icon="@drawable/ic_outline_settings_24px"
             android:title="Settings"/>
 
         <item
             android:id="@+id/main_nav_need_help"
-            android:icon="@android:drawable/ic_menu_help"
+            android:icon="@drawable/ic_outline_help_outline_24px"
             android:title="Need Help?"/>
     </group>
 </menu>
