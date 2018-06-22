@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/group_main"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/main_nav_list"
             android:icon="@android:drawable/ic_media_previous"
             android:title="Home"/>
+    </group>
 
+    <group
+        android:id="@+id/group_personal"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/main_nav_faq"
             android:icon="@android:drawable/ic_media_play"
