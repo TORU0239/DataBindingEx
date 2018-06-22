@@ -1,14 +1,16 @@
 package my.com.toru.databindingex.viewmodel
 
+import android.content.Intent
 import android.databinding.ObservableField
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import my.com.toru.databindingex.data.UserLogin
+import my.com.toru.databindingex.ui.MainActivity
 
-class MainLoginViewModel : AbsViewModel{
+class LoginViewModel : AbsViewModel{
     companion object {
-        private val TAG = MainLoginViewModel::class.java.simpleName
+        private val TAG = LoginViewModel::class.java.simpleName
     }
 
     val loginModel:ObservableField<UserLogin> = ObservableField()
@@ -19,6 +21,7 @@ class MainLoginViewModel : AbsViewModel{
     fun sendLoginInfo(v: View){
         Log.w(TAG, "email::" +  loginModel.get()?.email)
         Log.w(TAG, "password::" +  loginModel.get()?.password)
+        v.context.startActivity(Intent(v.context, MainActivity::class.java))
     }
 
     fun signUpNewUser(v:View){

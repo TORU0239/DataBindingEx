@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/main_nav_list"
+            android:icon="@android:drawable/ic_media_previous"
+            android:title="Home"/>
+
+        <item
+            android:id="@+id/main_nav_faq"
+            android:icon="@android:drawable/ic_media_play"
+            android:title="Faq"/>
+
+        <item
+            android:id="@+id/main_nav_setting"
+            android:icon="@android:drawable/ic_media_ff"
+            android:title="Settings"/>
+
+        <item
+            android:id="@+id/main_nav_need_help"
+            android:icon="@android:drawable/ic_menu_help"
+            android:title="Need Help?"/>
+    </group>
+</menu>

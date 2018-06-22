@@ -1,21 +1,20 @@
 package my.com.toru.databindingex.ui
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import my.com.toru.databindingex.R
-import my.com.toru.databindingex.databinding.ActivityMainBinding
 import my.com.toru.databindingex.viewmodel.AbsViewModel
-import my.com.toru.databindingex.viewmodel.MainLoginViewModel
+import my.com.toru.databindingex.viewmodel.MainViewModel
 
 class MainActivity : BaseActivity() {
-    override fun initViewModel(): AbsViewModel = MainLoginViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding:ActivityMainBinding = DataBindingUtil.setContentView(MainActivity@this, R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
-        absViewModel.onCreate()
-        binding.userViewModel = absViewModel as MainLoginViewModel
-        binding.executePendingBindings()
+        val toolbar = findViewById<Toolbar>(R.id.mainToolbar)
+        setSupportActionBar(toolbar)
     }
+
+    override fun initViewModel(): AbsViewModel = MainViewModel()
 }
