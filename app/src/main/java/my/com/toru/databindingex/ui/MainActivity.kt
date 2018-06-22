@@ -49,10 +49,31 @@ class MainActivity : BaseActivity() {
                 override fun onDrawerClosed(drawerView: View) {
                     if(current != currentItemId){
                         when(currentItemId){
-                            R.id.main_nav_list-> supportFragmentManager.beginTransaction().replace(R.id.mainFrame, MainListFragment()).commit()
-                            R.id.main_nav_faq-> supportFragmentManager.beginTransaction().replace(R.id.mainFrame, MainFAQFragment()).commit()
-                            R.id.main_nav_setting-> supportFragmentManager.beginTransaction().replace(R.id.mainFrame, MainSettingFragment()).commit()
-                            R.id.main_nav_need_help-> supportFragmentManager.beginTransaction().replace(R.id.mainFrame, MainNeedHelpFragment()).commit()
+                            R.id.main_nav_list-> supportFragmentManager.beginTransaction()
+                                    .replace(R.id.mainFrame, MainListFragment())
+                                    .commit()
+                            R.id.main_nav_faq-> {
+                                supportFragmentManager.popBackStack()
+                                supportFragmentManager.beginTransaction()
+                                        .addToBackStack(MainFAQFragment::class.java.simpleName)
+                                        .replace(R.id.mainFrame, MainFAQFragment())
+                                        .commit()
+                            }
+                            R.id.main_nav_setting-> {
+                                supportFragmentManager.popBackStack()
+                                supportFragmentManager.beginTransaction()
+                                        .addToBackStack(MainSettingFragment::class.java.simpleName)
+                                        .replace(R.id.mainFrame, MainSettingFragment())
+                                        .commit()
+
+                            }
+                            R.id.main_nav_need_help->{
+                                supportFragmentManager.popBackStack()
+                                supportFragmentManager.beginTransaction()
+                                        .addToBackStack(MainSettingFragment::class.java.simpleName)
+                                        .replace(R.id.mainFrame, MainNeedHelpFragment())
+                                        .commit()
+                            }
                             else->{}
                         }
                     }
@@ -63,9 +84,12 @@ class MainActivity : BaseActivity() {
                 }
             })
         }
-        supportFragmentManager.beginTransaction().replace(R.id.mainFrame, MainListFragment()).commit()
+
         currentItemId = R.id.main_nav_list
         navigationView.setCheckedItem(currentItemId)
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.mainFrame, MainListFragment())
+                .commit()
     }
 
     override fun onResume() {
@@ -76,6 +100,20 @@ class MainActivity : BaseActivity() {
     override fun onPause() {
         super.onPause()
         Log.w("MainActivity", "onPause")
+    }
+
+    override fun onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+        else{
+            if(supportFragmentManager.backStackEntryCount > 0){
+                supportFragmentManager.popBackStack()
+            }
+            else{
+                super.onBackPressed()
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
