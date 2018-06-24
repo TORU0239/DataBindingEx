@@ -2,13 +2,8 @@ package my.com.toru.databindingex.ui
 
 
 import android.databinding.DataBindingUtil
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.VERTICAL
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -43,11 +38,12 @@ class MainListFragment : Fragment() {
             add(MainListData("Alex"))
         }
 
-        binding.mainListRcv.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = MainListAdapter(dummyList)
-            setHasFixedSize(true)
-            addItemDecoration(DividerItemDecoration(context, VERTICAL))
-        }
+        binding.bindingAdapter = BindableAdapter(MainListAdapter(dummyList))
+        binding.executePendingBindings()
+    }
+
+    override fun onDestroy() {
+        binding.unbind()
+        super.onDestroy()
     }
 }

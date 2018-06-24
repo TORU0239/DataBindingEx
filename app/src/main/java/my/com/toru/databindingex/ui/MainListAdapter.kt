@@ -1,11 +1,14 @@
 package my.com.toru.databindingex.ui
 
+import android.databinding.BaseObservable
+import android.databinding.Bindable
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import my.com.toru.databindingex.R
+import my.com.toru.databindingex.BR
 import my.com.toru.databindingex.data.MainListData
 import my.com.toru.databindingex.databinding.AdapterMainListBinding
 
@@ -42,5 +45,14 @@ class MainListVH(var binding:AdapterMainListBinding, private var callback:(item:
             mainListData = item
             executePendingBindings()
         }
+    }
+}
+
+class BindableAdapter(var _adapter:MainListAdapter):BaseObservable(){
+    @Bindable
+    var adapter:MainListAdapter = _adapter
+
+    set(value) {
+        notifyPropertyChanged(BR.adapter)
     }
 }

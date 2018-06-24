@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.MainListFragment">
+    <data>
+        <variable
+            name="bindingAdapter"
+            type="my.com.toru.databindingex.ui.BindableAdapter"/>
+    </data>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mainListRcv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:rcvAdapter="@{bindingAdapter.adapter}"/>
 </layout>
