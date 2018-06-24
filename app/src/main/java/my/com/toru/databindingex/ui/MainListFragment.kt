@@ -2,9 +2,13 @@ package my.com.toru.databindingex.ui
 
 
 import android.databinding.DataBindingUtil
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.VERTICAL
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -30,19 +34,20 @@ class MainListFragment : Fragment() {
         Log.w("MainListFragment", "onViewCreated")
         // test dummy data //
         val dummyList = ArrayList<MainListData>()
-        dummyList.add(MainListData("Toru"))
-        dummyList.add(MainListData("Kar Heng"))
-        dummyList.add(MainListData("Wan San"))
-        dummyList.add(MainListData("Ichi"))
-        dummyList.add(MainListData("Abby"))
-        dummyList.add(MainListData("Alex"))
+        dummyList.apply {
+            add(MainListData("Toru"))
+            add(MainListData("Kar Heng"))
+            add(MainListData("Wan San"))
+            add(MainListData("Ichi"))
+            add(MainListData("Abby"))
+            add(MainListData("Alex"))
+        }
 
-
-        binding.mainListRcv.layoutManager = LinearLayoutManager(context)
-        binding.mainListRcv.setHasFixedSize(false)
-        binding.mainListRcv.adapter = MainListAdapter(dummyList)
-        binding.mainListRcv.adapter.notifyDataSetChanged()
-
-        Log.w("MainListFragment", "itemCount:: ${binding.mainListRcv.adapter.itemCount}")
+        binding.mainListRcv.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = MainListAdapter(dummyList)
+            setHasFixedSize(true)
+            addItemDecoration(DividerItemDecoration(context, VERTICAL))
+        }
     }
 }

@@ -2,6 +2,7 @@ package my.com.toru.databindingex.ui
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import my.com.toru.databindingex.R
@@ -12,7 +13,10 @@ class MainListAdapter(private var itemList:ArrayList<MainListData>): RecyclerVie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainListVH{
         val binding:AdapterMainListBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.adapter_main_list, parent, false)
-        return MainListVH(binding)
+
+        return MainListVH(binding){
+            Log.w("MainListAdapter", "item:: ${it.name}")
+        }
     }
 
     override fun getItemCount(): Int = itemList.size
@@ -28,8 +32,15 @@ class MainListAdapter(private var itemList:ArrayList<MainListData>): RecyclerVie
     }
 }
 
-class MainListVH(var binding:AdapterMainListBinding):RecyclerView.ViewHolder(binding.root){
+class MainListVH(var binding:AdapterMainListBinding, private var callback:(item:MainListData)->Unit):RecyclerView.ViewHolder(binding.root){
     fun bind(item:MainListData){
-        binding.mainText.text = item.name
+        itemView.setOnClickListener {
+            callback(item)
+        }
+
+        binding.apply {
+            mainListData = item
+            executePendingBindings()
+        }
     }
 }
