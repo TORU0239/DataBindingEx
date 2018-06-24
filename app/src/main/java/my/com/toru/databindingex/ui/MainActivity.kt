@@ -48,33 +48,33 @@ class MainActivity : BaseActivity() {
 
                 override fun onDrawerClosed(drawerView: View) {
                     if(current != currentItemId){
+
+                        Log.w("MainActivity", "currentItemId:: $currentItemId")
+
                         when(currentItemId){
                             R.id.main_nav_list->{
-                                supportFragmentManager.popBackStack()
+                                currentItemId = R.id.main_nav_list
                                 supportFragmentManager.beginTransaction()
                                         .replace(R.id.mainFrame, MainListFragment())
                                         .commit()
                             }
 
                             R.id.main_nav_faq-> {
-                                supportFragmentManager.popBackStack()
+                                currentItemId = R.id.main_nav_faq
                                 supportFragmentManager.beginTransaction()
-                                        .addToBackStack(MainFAQFragment::class.java.simpleName)
                                         .replace(R.id.mainFrame, MainFAQFragment())
                                         .commit()
                             }
                             R.id.main_nav_setting-> {
-                                supportFragmentManager.popBackStack()
+                                currentItemId = R.id.main_nav_setting
                                 supportFragmentManager.beginTransaction()
-                                        .addToBackStack(MainSettingFragment::class.java.simpleName)
                                         .replace(R.id.mainFrame, MainSettingFragment())
                                         .commit()
 
                             }
                             R.id.main_nav_need_help->{
-                                supportFragmentManager.popBackStack()
+                                currentItemId = R.id.main_nav_need_help
                                 supportFragmentManager.beginTransaction()
-                                        .addToBackStack(MainSettingFragment::class.java.simpleName)
                                         .replace(R.id.mainFrame, MainNeedHelpFragment())
                                         .commit()
                             }

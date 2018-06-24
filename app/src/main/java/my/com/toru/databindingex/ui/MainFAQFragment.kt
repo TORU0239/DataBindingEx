@@ -15,7 +15,7 @@ class MainFAQFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_list, container, false)
+        return inflater.inflate(R.layout.fragment_main_faq, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
