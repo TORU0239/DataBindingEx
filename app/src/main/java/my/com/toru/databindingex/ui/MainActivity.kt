@@ -86,7 +86,10 @@ class MainActivity : BaseActivity() {
         }
 
         currentItemId = R.id.main_nav_list
-        navigationView.setCheckedItem(currentItemId)
+        currentItemId.let {
+            navigationView.setCheckedItem(it)
+        }
+
         supportFragmentManager.beginTransaction()
                 .replace(R.id.mainFrame, MainListFragment())
                 .commit()
@@ -109,6 +112,10 @@ class MainActivity : BaseActivity() {
         else{
             if(supportFragmentManager.backStackEntryCount > 0){
                 supportFragmentManager.popBackStack()
+                currentItemId = R.id.main_nav_list
+                currentItemId.let {
+                    navigationView.setCheckedItem(it)
+                }
             }
             else{
                 super.onBackPressed()
