@@ -49,9 +49,13 @@ class MainActivity : BaseActivity() {
                 override fun onDrawerClosed(drawerView: View) {
                     if(current != currentItemId){
                         when(currentItemId){
-                            R.id.main_nav_list-> supportFragmentManager.beginTransaction()
-                                    .replace(R.id.mainFrame, MainListFragment())
-                                    .commit()
+                            R.id.main_nav_list->{
+                                supportFragmentManager.popBackStack()
+                                supportFragmentManager.beginTransaction()
+                                        .replace(R.id.mainFrame, MainListFragment())
+                                        .commit()
+                            }
+
                             R.id.main_nav_faq-> {
                                 supportFragmentManager.popBackStack()
                                 supportFragmentManager.beginTransaction()
@@ -110,7 +114,7 @@ class MainActivity : BaseActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
         }
         else{
-            if(supportFragmentManager.backStackEntryCount > 0){
+            if(supportFragmentManager.backStackEntryCount > 0 && currentItemId != R.id.main_nav_list){
                 supportFragmentManager.popBackStack()
                 currentItemId = R.id.main_nav_list
                 currentItemId.let {
