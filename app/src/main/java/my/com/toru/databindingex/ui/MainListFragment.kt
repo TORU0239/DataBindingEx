@@ -40,6 +40,9 @@ class MainListFragment : Fragment() {
 
         binding.bindingAdapter = BindableAdapter(MainListAdapter(dummyList))
         binding.executePendingBindings()
+
+        binding.bindingAdapter?.test()
+        binding.executePendingBindings()
     }
 
     override fun onDestroy() {

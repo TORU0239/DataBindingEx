@@ -29,7 +29,6 @@ class MainListAdapter(private var itemList:ArrayList<MainListData>): RecyclerVie
     }
 
     fun notifyDataChange(newList:ArrayList<MainListData>){
-        itemList.clear()
         itemList.addAll(newList)
         notifyDataSetChanged()
     }
@@ -48,11 +47,19 @@ class MainListVH(var binding:AdapterMainListBinding, private var callback:(item:
     }
 }
 
-class BindableAdapter(var _adapter:MainListAdapter):BaseObservable(){
+class BindableAdapter(_adapter:MainListAdapter):BaseObservable(){
     @Bindable
     var adapter:MainListAdapter = _adapter
 
     set(value) {
         notifyPropertyChanged(BR.adapter)
+    }
+
+    fun test(){
+        val list = ArrayList<MainListData>()
+        list.add(MainListData("Natalia"))
+        list.add(MainListData("Austeja"))
+        list.add(MainListData("Patience"))
+        adapter.notifyDataChange(list)
     }
 }
